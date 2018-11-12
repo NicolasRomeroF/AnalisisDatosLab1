@@ -9,6 +9,13 @@ names <- c("Class","AGE","SEX","STEROID","ANTIVIRALS","FATIGUE","MALAISE",
 
 colnames(hepatitis) <- names
 
+getmode <- function(x){
+  uniqv <- unique(x)
+  uniqv[which.max(tabulate(match(x,uniqv)))]
+}
+
 hepatitis.without.na <- na.omit(hepatitis)
 
-means <- sapply(hepatitis,mean)
+means <- sapply(hepatitis.without.na,mean)
+medians <- sapply(hepatitis.without.na,median)
+modes <- sapply(hepatitis.without.na,getmode)
