@@ -1,3 +1,4 @@
+library(ggplot2)
 
 path = "~/Escritorio/USACH/Analisis de Datos/Lab1/hepatitis.data"
 hepatitis <- read.table(path,sep=",", na.strings = c("?"))
@@ -19,3 +20,5 @@ hepatitis.without.na <- na.omit(hepatitis)
 means <- sapply(hepatitis.without.na,mean)
 medians <- sapply(hepatitis.without.na,median)
 modes <- sapply(hepatitis.without.na,getmode)
+vars <- sapply(hepatitis.without.na,var)
+
