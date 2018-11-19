@@ -50,14 +50,14 @@ print(summary(hepatitis.live))
 SEX <- hepatitis.without.na[["SEX"]]
 sex <- rep("male", length(SEX))
 sex[SEX == 2] <- "female"
-b.1 <-ggplot(data=hepatitis.without.na, aes(x=sex, fill=CLASS)) + geom_bar()
+b.1 <-ggplot(data=hepatitis.without.na, aes(x=sex,y = ..prop..,group= 1)) + geom_bar(stat="count")
 show(b.1)
 
 STEROID <- hepatitis.without.na[["STEROID"]]
 steroid <- rep("no", length(STEROID))
 steroid[STEROID == 2] <- "yes"
-b.2 <-ggplot(data=hepatitis.without.na, aes(x=steroid, fill=CLASS)) + geom_bar()
-show(b.2)
+b.2 <-ggplot(data=hepatitis.without.na, aes(x=steroid, y = ..prop..,group= 1)) + geom_bar(stat="count")
+show(b.1)
 # 
 # ANTIVIRALS <- hepatitis.without.na[["ANTIVIRALS"]]
 # antivirals <- rep("no", length(ANTIVIRALS))
