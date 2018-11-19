@@ -1,4 +1,5 @@
 library(ggplot2)
+library(gridExtra)
 
 path = "~/Escritorio/USACH/Analisis de Datos/Lab1/hepatitis.data"
 #path = "~/Documentos/AnalisisDatosLab1/hepatitis.data"
@@ -47,81 +48,158 @@ print(summary(hepatitis.live))
 # show(p.5)
 # show(p.6)
 
-SEX <- hepatitis.without.na[["SEX"]]
+SEX <- hepatitis.die[["SEX"]]
 sex <- rep("male", length(SEX))
 sex[SEX == 2] <- "female"
-b.1 <-ggplot(data=hepatitis.without.na, aes(x=sex,y = ..prop..,group= 1)) + geom_bar(stat="count")
-show(b.1)
+b.d.1 <-ggplot(data=hepatitis.die, aes(x=sex,y = ..prop..,group= 1)) + geom_bar(stat="count") +ggtitle("Class: DIE")
+show(b.d.1)
 
-STEROID <- hepatitis.without.na[["STEROID"]]
+SEX <- hepatitis.live[["SEX"]]
+sex <- rep("male", length(SEX))
+sex[SEX == 2] <- "female"
+b.l.1 <-ggplot(data=hepatitis.live, aes(x=sex,y = ..prop..,group= 1)) + geom_bar(stat="count")  +ggtitle("Class: LIVE")
+show(b.l.1)
+
+STEROID <- hepatitis.die[["STEROID"]]
 steroid <- rep("no", length(STEROID))
 steroid[STEROID == 2] <- "yes"
-b.2 <-ggplot(data=hepatitis.without.na, aes(x=steroid, y = ..prop..,group= 1)) + geom_bar(stat="count")
-show(b.1)
-# 
-# ANTIVIRALS <- hepatitis.without.na[["ANTIVIRALS"]]
-# antivirals <- rep("no", length(ANTIVIRALS))
-# antivirals[ANTIVIRALS == 2] <- "yes"
-# b.3 <-ggplot(data=hepatitis.without.na, aes(x=antivirals)) + geom_bar()
-# show(b.3)
-# 
-# FATIGUE <- hepatitis.without.na[["FATIGUE"]]
-# fatigue <- rep("no", length(FATIGUE))
-# fatigue[FATIGUE== 2] <- "yes"
-# b.4 <-ggplot(data=hepatitis.without.na, aes(x=fatigue)) + geom_bar()
-# show(b.4)
-# 
-# MALAISE <- hepatitis.without.na[["MALAISE"]]
-# malaise <- rep("no", length(MALAISE))
-# malaise[MALAISE== 2] <- "yes"
-# b.5 <-ggplot(data=hepatitis.without.na, aes(x=malaise)) + geom_bar()
-# show(b.5)
-# 
-# ANOREXIA <- hepatitis.without.na[["ANOREXIA"]]
-# anorexia <- rep("no", length(ANOREXIA))
-# anorexia[ANOREXIA== 2] <- "yes"
-# b.6 <-ggplot(data=hepatitis.without.na, aes(x=anorexia)) + geom_bar()
-# show(b.6)
-# 
-# LIVER_BIG <- hepatitis.without.na[["LIVER_BIG"]]
-# liver_big <- rep("no", length(LIVER_BIG))
-# liver_big[LIVER_BIG== 2] <- "yes"
-# b.7 <-ggplot(data=hepatitis.without.na, aes(x=liver_big)) + geom_bar()
-# show(b.7)
-# 
-# LIVER_FIRM <- hepatitis.without.na[["LIVER_FIRM"]]
-# liver_firm <- rep("no", length(LIVER_FIRM))
-# liver_firm[LIVER_FIRM== 2] <- "yes"
-# b.8 <-ggplot(data=hepatitis.without.na, aes(x=liver_firm)) + geom_bar()
-# show(b.8)
-# 
-# SPLEEN_PALPABLE <- hepatitis.without.na[["SPLEEN_PALPABLE"]]
-# spleen_palable <- rep("no", length(SPLEEN_PALPABLE))
-# spleen_palable[SPLEEN_PALPABLE== 2] <- "yes"
-# b.9 <-ggplot(data=hepatitis.without.na, aes(x=spleen_palable)) + geom_bar()
-# show(b.9)
-# 
-# SPIDERS <- hepatitis.without.na[["SPIDERS"]]
-# spiders <- rep("no", length(SPIDERS))
-# spiders[SPIDERS== 2] <- "yes"
-# b.10 <-ggplot(data=hepatitis.without.na, aes(x=spiders)) + geom_bar()
-# show(b.10)
-# 
-# ASCITES <- hepatitis.without.na[["ASCITES"]]
-# ascites <- rep("no", length(ASCITES))
-# ascites[ASCITES== 2] <- "yes"
-# b.11 <-ggplot(data=hepatitis.without.na, aes(x=ascites)) + geom_bar()
-# show(b.11)
-# 
-# VARICES <- hepatitis.without.na[["VARICES"]]
-# varices <- rep("no", length(VARICES))
-# varices[VARICES== 2] <- "yes"
-# b.12 <-ggplot(data=hepatitis.without.na, aes(x=varices)) + geom_bar()
-# show(b.12)
-# 
-# HISTOLOGY <- hepatitis.without.na[["HISTOLOGY"]]
-# histology <- rep("no", length(HISTOLOGY))
-# histology[HISTOLOGY== 2] <- "yes"
-# b.13 <-ggplot(data=hepatitis.without.na, aes(x=histology)) + geom_bar()
-# show(b.13)
+b.d.2 <-ggplot(data=hepatitis.die, aes(x=steroid, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: DIE")
+show(b.d.2)
 
+STEROID <- hepatitis.live[["STEROID"]]
+steroid <- rep("no", length(STEROID))
+steroid[STEROID == 2] <- "yes"
+b.l.2 <-ggplot(data=hepatitis.live, aes(x=steroid, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: LIVE")
+show(b.l.2)
+
+ANTIVIRALS <- hepatitis.die[["ANTIVIRALS"]]
+antivirals <- rep("no", length(ANTIVIRALS))
+antivirals[ANTIVIRALS == 2] <- "yes"
+b.d.3 <-ggplot(data=hepatitis.die, aes(x=antivirals, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: DIE")
+show(b.d.3)
+
+ANTIVIRALS <- hepatitis.live[["ANTIVIRALS"]]
+antivirals <- rep("no", length(ANTIVIRALS))
+antivirals[ANTIVIRALS == 2] <- "yes"
+b.l.3 <-ggplot(data=hepatitis.live, aes(x=antivirals, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: LIVE")
+show(b.l.3)
+
+FATIGUE <- hepatitis.die[["FATIGUE"]]
+fatigue <- rep("no", length(FATIGUE))
+fatigue[FATIGUE== 2] <- "yes"
+b.d.4 <-ggplot(data=hepatitis.die, aes(x=fatigue, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: DIE")
+show(b.d.4)
+
+FATIGUE <- hepatitis.live[["FATIGUE"]]
+fatigue <- rep("no", length(FATIGUE))
+fatigue[FATIGUE== 2] <- "yes"
+b.l.4 <-ggplot(data=hepatitis.live, aes(x=fatigue, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: LIVE")
+show(b.l.4)
+
+MALAISE <- hepatitis.die[["MALAISE"]]
+malaise <- rep("no", length(MALAISE))
+malaise[MALAISE== 2] <- "yes"
+b.d.5 <-ggplot(data=hepatitis.die, aes(x=malaise, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: DIE")
+show(b.d.5)
+
+MALAISE <- hepatitis.live[["MALAISE"]]
+malaise <- rep("no", length(MALAISE))
+malaise[MALAISE== 2] <- "yes"
+b.l.5 <-ggplot(data=hepatitis.live, aes(x=malaise, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: LIVE")
+show(b.l.5)
+
+ANOREXIA <- hepatitis.die[["ANOREXIA"]]
+anorexia <- rep("no", length(ANOREXIA))
+anorexia[ANOREXIA== 2] <- "yes"
+b.d.6 <-ggplot(data=hepatitis.die, aes(x=anorexia, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: DIE")
+show(b.d.6)
+
+ANOREXIA <- hepatitis.live[["ANOREXIA"]]
+anorexia <- rep("no", length(ANOREXIA))
+anorexia[ANOREXIA== 2] <- "yes"
+b.l.6 <-ggplot(data=hepatitis.live, aes(x=anorexia, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: LIVE")
+show(b.l.6)
+
+LIVER_BIG <- hepatitis.die[["LIVER_BIG"]]
+liver_big <- rep("no", length(LIVER_BIG))
+liver_big[LIVER_BIG== 2] <- "yes"
+b.d.7 <-ggplot(data=hepatitis.die, aes(x=liver_big, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: DIE")
+show(b.d.7)
+
+LIVER_BIG <- hepatitis.live[["LIVER_BIG"]]
+liver_big <- rep("no", length(LIVER_BIG))
+liver_big[LIVER_BIG== 2] <- "yes"
+b.l.7 <-ggplot(data=hepatitis.live, aes(x=liver_big, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: LIVE")
+show(b.l.7)
+
+LIVER_FIRM <- hepatitis.die[["LIVER_FIRM"]]
+liver_firm <- rep("no", length(LIVER_FIRM))
+liver_firm[LIVER_FIRM== 2] <- "yes"
+b.d.8 <-ggplot(data=hepatitis.die, aes(x=liver_firm, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: DIE")
+show(b.d.8)
+
+LIVER_FIRM <- hepatitis.live[["LIVER_FIRM"]]
+liver_firm <- rep("no", length(LIVER_FIRM))
+liver_firm[LIVER_FIRM== 2] <- "yes"
+b.l.8 <-ggplot(data=hepatitis.live, aes(x=liver_firm, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: LIVE")
+show(b.l.8)
+
+SPLEEN_PALPABLE <- hepatitis.die[["SPLEEN_PALPABLE"]]
+spleen_palpable <- rep("no", length(SPLEEN_PALPABLE))
+spleen_palpable[SPLEEN_PALPABLE== 2] <- "yes"
+b.d.9 <-ggplot(data=hepatitis.die, aes(x=spleen_palpable, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: DIE")
+show(b.d.9)
+
+SPLEEN_PALPABLE <- hepatitis.live[["SPLEEN_PALPABLE"]]
+spleen_palpable <- rep("no", length(SPLEEN_PALPABLE))
+spleen_palpable[SPLEEN_PALPABLE== 2] <- "yes"
+b.l.9 <-ggplot(data=hepatitis.live, aes(x=spleen_palpable, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: LIVE")
+show(b.l.9)
+
+SPIDERS <- hepatitis.die[["SPIDERS"]]
+spiders <- rep("no", length(SPIDERS))
+spiders[SPIDERS== 2] <- "yes"
+b.d.10 <-ggplot(data=hepatitis.die, aes(x=spiders, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: DIE")
+show(b.d.10)
+
+SPIDERS <- hepatitis.live[["SPIDERS"]]
+spiders <- rep("no", length(SPIDERS))
+spiders[SPIDERS== 2] <- "yes"
+b.l.10 <-ggplot(data=hepatitis.live, aes(x=spiders, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: LIVE")
+show(b.l.10)
+
+ASCITES <- hepatitis.die[["ASCITES"]]
+ascites <- rep("no", length(ASCITES))
+ascites[ASCITES== 2] <- "yes"
+b.d.11 <-ggplot(data=hepatitis.die, aes(x=ascites, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: DIE")
+show(b.d.11)
+
+ASCITES <- hepatitis.live[["ASCITES"]]
+ascites <- rep("no", length(ASCITES))
+ascites[ASCITES== 2] <- "yes"
+b.l.11 <-ggplot(data=hepatitis.live, aes(x=ascites, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: LIVE")
+show(b.l.11)
+
+VARICES <- hepatitis.die[["VARICES"]]
+varices <- rep("no", length(VARICES))
+varices[VARICES== 2] <- "yes"
+b.d.12 <-ggplot(data=hepatitis.die, aes(x=varices, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: DIE")
+show(b.d.12)
+
+VARICES <- hepatitis.live[["VARICES"]]
+varices <- rep("no", length(VARICES))
+varices[VARICES== 2] <- "yes"
+b.l.12 <-ggplot(data=hepatitis.live, aes(x=varices, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: LIVE")
+show(b.l.12)
+
+HISTOLOGY <- hepatitis.die[["HISTOLOGY"]]
+histology <- rep("no", length(HISTOLOGY))
+histology[HISTOLOGY== 2] <- "yes"
+b.d.13 <-ggplot(data=hepatitis.die, aes(x=histology, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: DIE")
+show(b.d.13)
+
+HISTOLOGY <- hepatitis.live[["HISTOLOGY"]]
+histology <- rep("no", length(HISTOLOGY))
+histology[HISTOLOGY== 2] <- "yes"
+b.l.13 <-ggplot(data=hepatitis.live, aes(x=histology, y = ..prop..,group = 1)) + geom_bar(stat="count") +ggtitle("Class: LIVE")
+show(b.l.13)
